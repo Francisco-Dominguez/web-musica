@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lo que me mola el Punk - Videos & Cultura DIY</title>
+  <meta name="description" content="Disfruta los mejores videos de punk de los 90's, música, fotos y arte punk en un espacio con estilo DIY." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --red: #ff4444;
+      --black: #0f0f0f;
+      --white: #ffffff;
+      --gray: #cccccc;
+      --dark-gray: #222;
+      --sidebar-width: 280px;
+      --transition: 0.3s ease-in-out;
+    }
+
+    /* Reset básico */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'VT323', monospace;
+      background: var(--black);
+      color: var(--white);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar */
+    aside.sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: var(--dark-gray);
+      border-right: 3px solid var(--red);
+      padding: 20px 15px;
+      overflow-y: auto;
+      z-index: 100;
+      transition: transform var(--transition);
+    }
+    aside.sidebar h2 {
+      color: var(--red);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--red);
+      padding-bottom: 10px;
+      user-select: none;
+    }
+    aside.sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    aside.sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1rem;
+      border-radius: 6px;
+      padding: 6px 10px;
+      background: transparent;
+      transition: background-color 0.2s;
+      user-select: none;
+    }
+    aside.sidebar nav a:hover,
+    aside.sidebar nav a:focus {
+      background: var(--red);
+      color: var(--black);
+      outline: none;
+    }
+    aside.sidebar nav img {
+      width: 60px;
+      height: 34px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
+      filter: brightness(0.8);
+      transition: filter 0.2s;
+    }
+    aside.sidebar nav a:hover img,
+    aside.sidebar nav a:focus img {
+      filter: brightness(1);
+    }
+
+    /* Contenedor principal */
+    .container {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: var(--black);
+      border-bottom: 3px solid var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      user-select: none;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+    header .logo {
+      font-size: 2.5rem;
+      color: var(--red);
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+    header img {
+      height: 60px;
+      width: auto;
+      border-radius: 6px;
+      filter: drop-shadow(0 0 3px var(--red));
+    }
+
+    /* Navegación superior */
+    nav.topnav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      font-size: 1.15rem;
+      color: var(--red);
+    }
+    nav.topnav a {
+      color: var(--red);
+      text-decoration: none;
+      position: relative;
+      padding: 5px 0;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    nav.topnav a:hover,
+    nav.topnav a:focus {
+      color: var(--white);
+      outline: none;
+    }
+
+    /* Dropdown menú */
+    .dropdown {
+      position: relative;
+    }
+    .dropdown > a::after {
+      content: " ▼";
+      font-size: 0.6rem;
+    }
+    .dropdown-content {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: var(--black);
+      border: 2px solid var(--red);
+      border-radius: 6px;
+      box-shadow: 0 0 10px var(--red);
+      min-width: 140px;
+      display: none;
+      flex-direction: column;
+      user-select: none;
+      z-index: 150;
+    }
+    .dropdown-content a {
+      padding: 10px 15px;
+      color: var(--red);
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .dropdown-content a:hover,
+    .dropdown-content a:focus {
+      background: var(--red);
+      color: var(--black);
+      outline: none;
+    }
+    /* Mostrar dropdown al hover y focus */
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+      display: flex;
+    }
+
+    /* Main */
+    main {
+      flex: 1;
+      padding: 30px 40px;
+      overflow-y: auto;
+      background: #121212;
+    }
+
+    main h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--red);
+      margin-bottom: 30px;
+      user-select: none;
+      text-shadow: 1px 1px 4px #440000;
+    }
+
+    /* Grid videos */
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+    @media (max-width: 900px) {
+      .videos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .videos {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cada video */
+    .video-item {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 0 15px #ff4444cc;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .video-item:hover,
+    .video-item:focus-within {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px var(--red);
+      outline: none;
+    }
+    .video-item iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 4px var(--red));
+    }
+    .video-item h3 {
+      font-size: 1.25rem;
+      margin: 0 0 6px 0;
+      color: var(--red);
+      text-shadow: 1px 1px 3px #440000;
+    }
+    .video-item p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      flex-grow: 1;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--black);
+      border-top: 3px solid var(--red);
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 0.9rem;
+      color: var(--gray);
+      user-select: none;
+    }
+
+    /* Banner cookies */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #222;
+      color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      z-index: 1000;
+      font-family: 'VT323', monospace;
+      user-select: none;
+    }
+    #cookie-banner[hidden] {
+      display: none;
+    }
+    .cookie-buttons {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
+    }
+    .cookie-buttons button {
+      padding: 8px 15px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'VT323', monospace;
+      transition: background-color 0.2s, color 0.2s;
+      user-select: none;
+    }
+    .cookie-buttons .accept {
+      background: var(--red);
+      color: var(--white);
+    }
+    .cookie-buttons .accept:hover {
+      background: #ff2222;
+    }
+    .cookie-buttons .reject {
+      background: var(--gray);
+      color: var(--black);
+    }
+    .cookie-buttons .reject:hover {
+      background: #bbb;
+    }
+
+    /* Scrollbar personalizado para sidebar y main */
+    aside.sidebar::-webkit-scrollbar,
+    main::-webkit-scrollbar {
+      width: 8px;
+    }
+    aside.sidebar::-webkit-scrollbar-thumb,
+    main::-webkit-scrollbar-thumb {
+      background: var(--red);
+      border-radius: 4px;
+    }
+    aside.sidebar::-webkit-scrollbar-track,
+    main::-webkit-scrollbar-track {
+      background: var(--dark-gray);
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar" aria-label="Lista de videos">
+    <h2>Videos Punk</h2>
+    <nav>
+      <a href="#video1" tabindex="0">
+        <img src="https://img.youtube.com/vi/nkB-BSVlw68/hqdefault.jpg" alt="Miniatura Video 1" />
+        Radio Crimen - Gafas progresistas
+      </a>
+      <a href="#video2" tabindex="0">
+        <img src="https://img.youtube.com/vi/q7Ol-YDS4Jc/hqdefault.jpg" alt="Miniatura Video 2" />
+        Título 2 - Descripción breve
+      </a>
+      <a href="#video3" tabindex="0">
+        <img src="https://img.youtube.com/vi/sgje9Pp_kOg/hqdefault.jpg" alt="Miniatura Video 3" />
+        Título 3 - Descripción breve
+      </a>
+      <a href="#video4" tabindex="0">
+        <img src="https://img.youtube.com/vi/6qkREG96cjM/hqdefault.jpg" alt="Miniatura Video 4" />
+        Video 4 - Punk 90's
+      </a>
+      <a href="#video5" tabindex="0">
+        <img src="https://img.youtube.com/vi/gmRy-JW5aps/hqdefault.jpg" alt="Miniatura Video 5" />
+        Video 5 - Música punk
+      </a>
+      <a href="#video6" tabindex="0">
+        <img src="https://img.youtube.com/vi/aV5db_wqXdc/hqdefault.jpg" alt="Miniatura Video 6" />
+        Video 6 - Cultura DIY
+      </a>
+      <a href="#video7" tabindex="0">
+        <img src="https://img.youtube.com/vi/N4eNYRfSIhQ/hqdefault.jpg" alt="Miniatura Video 7" />
+        Radio Crimen - Gafas progresistas
+      </a>
+      <a href="#video8" tabindex="0">
+        <img src="https://img.youtube.com/vi/dQmseppGjx4/hqdefault.jpg" alt="Miniatura Video 8" />
+        Video 8 - Descripción
+      </a>
+      <a href="#video9" tabindex="0">
+        <img src="https://img.youtube.com/vi/5eznZA8vT20/hqdefault.jpg" alt="Miniatura Video 9" />
+        Video 9 - Punk en vivo
+      </a>
+    </nav>
+  </aside>
+
+  <div class="container">
+
+    <header>
+      <img src="logos-punk.jpg" alt="Logo de Lo que me Mola, estilo punk" />
+      <div class="logo">Lo que me Mola</div>
+      <nav class="topnav" aria-label="Menú principal">
+        <a href="#">Inicio</a>
+        <div class="dropdown">
+          <a href="#" class="dropbtn" aria-haspopup="true" aria-expanded="false">Galería</a>
+          <div class="dropdown-content" role="menu" aria-label="Submenú Galería">
+            <a href="#" role="menuitem" tabindex="-1">Fotos</a>
+            <a href="#" role="menuitem" tabindex="-1">Arte</a>
+            <a href="#" role="menuitem" tabindex="-1">Eventos</a>
+          </div>
+        </div>
+        <a href="#">Videos</a>
+        <a href="#">Música</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </header>
+
+    <main>
+      <h2>🎥 Videos 90's Punk y mucho más</h2>
+      <div class="videos">
+        <article class="video-item" id="video1" tabindex="0" aria-label="Video Radio Crimen - Gafas progresistas">
+          <iframe src="https://www.youtube.com/embed/nkB-BSVlw68" title="Radio Crimen - Gafas progresistas" allowfullscreen></iframe>
+          <h3>Radio Crimen - Gafas progresistas</h3>
+          <p>Video punk underground que refleja la cultura DIY y actitud irreverente de los 90's.</p>
+        </article>
+
+        <article class="video-item" id="video2" tabindex="0" aria-label="Video Título 2">
+          <iframe src="https://www.youtube.com/embed/q7Ol-YDS4Jc?si=DHParSNZVD142EWC" title="Título 2" allowfullscreen></iframe>
+          <h3>Título 2</h3>
+          <p>Descripción 2 - punk, energía y rebeldía en cada acorde.</p>
+        </article>
+
+        <article class="video-item" id="video3" tabindex="0" aria-label="Video Título 3">
+          <iframe src="https://www.youtube.com/embed/sgje9Pp_kOg?si=Q65low3eCYSjVOEy" title="Título 3" allowfullscreen></iframe>
+          <h3>Título 3</h3>
+          <p>Descripción 3 - sonidos potentes de los 90's punk.</p>
+        </article>
+
+        <article class="video-item" id="video4" tabindex="0" aria-label="Video 4">
+          <iframe src="https://www.youtube.com/embed/6qkREG96cjM" title="Video 4" allowfullscreen></iframe>
+          <h3>Video 4</h3>
+          <p>Una joya del punk clásico con toda la esencia DIY.</p>
+        </article>
+
+        <article class="video-item" id="video5" tabindex="0" aria-label="Video 5">
+          <iframe src="https://www.youtube.com/embed/gmRy-JW5aps?si=lgjC9WYMcBjKzkD7" title="Video 5" allowfullscreen></iframe>
+          <h3>Video 5</h3>
+          <p>Música punk en estado puro, pura energía de los 90's.</p>
+        </article>
+
+        <article class="video-item" id="video6" tabindex="0" aria-label="Video 6">
+          <iframe src="https://www.youtube.com/embed/aV5db_wqXdc?si=WFTEam-hpyxI27El" title="Video 6" allowfullscreen></iframe>
+          <h3>Video 6</h3>
+          <p>Cultura DIY y punk que inspira generaciones.</p>
+        </article>
+
+        <article class="video-item" id="video7" tabindex="0" aria-label="Video Radio Crimen - Gafas progresistas 2">
+          <iframe src="https://www.youtube.com/embed/N4eNYRfSIhQ?si=ngwh1eXbajxSr9zp" title="Radio Crimen 2" allowfullscreen></iframe>
+          <h3>Radio Crimen 2</h3>
+          <p>Gafas progresistas con espíritu rebelde.</p>
+        </article>
+
+        <article class="video-item" id="video8" tabindex="0" aria-label="Video 8">
+          <iframe src="https://www.youtube.com/embed/dQmseppGjx4?si=I6WHVNKljlErrc3J" title="Video 8" allowfullscreen></iframe>
+          <h3>Video 8</h3>
+          <p>Descripción 8 - la escena punk en todo su esplendor.</p>
+        </article>
+
+        <article class="video-item" id="video9" tabindex="0" aria-label="Video 9">
+          <iframe src="https://www.youtube.com/embed/5eznZA8vT20?si=XoQVazCeKWAN4wDh" title="Video 9" allowfullscreen></iframe>
+          <h3>Video 9</h3>
+          <p>Actuación en vivo con toda la fuerza del punk.</p>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      &copy; 2025 Lo que me Mola. Todos los derechos reservados.
+    </footer>
+
+  </div>
+
+  <!-- Banner cookies -->
+  <div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Consentimiento de cookies">
+    <span>Esta web usa cookies para mejorar tu experiencia.</span>
+    <div class="cookie-buttons">
+      <button class="accept" aria-label="Aceptar cookies">Aceptar</button>
+      <button class="reject" aria-label="Rechazar cookies">Rechazar</button>
+    </div>
+  </div>
+
+  <script>
+    // Manejo simple del banner de cookies
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = banner.querySelector('.accept');
+    const rejectBtn = banner.querySelector('.reject');
+
+    function setCookie(name, value, days) {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+    }
+
+    function getCookie(name) {
+      return document.cookie.split('; ').reduce((r, v) => {
+        const parts = v.split('=');
+        return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+      }, '');
+    }
+
+    // Mostrar banner solo si no hay consentimiento
+    if (!getCookie('cookie_consent')) {
+      banner.hidden = false;
+    } else {
+      banner.hidden = true;
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      setCookie('cookie_consent', 'accepted', 365);
+      banner.hidden = true;
+    });
+    rejectBtn.addEventListener('click', () => {
+      setCookie('cookie_consent', 'rejected', 365);
+      banner.hidden = true;
+    });
+
+    // Para que dropdown sea accesible con teclado (solo mejora visual)
+    const dropdownBtn = document.querySelector('.dropbtn');
+    const dropdownContent = document.querySelector('.dropdown-content');
+    dropdownBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const expanded = dropdownBtn.getAttribute('aria-expanded') === 'true';
+      dropdownBtn.setAttribute('aria-expanded', !expanded);
+      dropdownContent.style.display = expanded ? 'none' : 'flex';
+    });
+  </script>
+
+</body>
+</html>
