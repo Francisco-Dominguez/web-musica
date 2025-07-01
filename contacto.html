@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario Estilizado con Header</title>
+  <style>
+    /* Variables de color */
+    :root {
+      --color-primario: #ff39a6;
+      --color-secundario: #ff69b4;
+      --color-fondo: #111;
+      --color-texto: #fff;
+      --color-hover: #ff1e9e;
+    }
+
+    /* Reset de márgenes y paddings */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Estilos generales */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 1rem;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: var(--color-primario);
+    }
+
+    /* Header con el menú */
+    header {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #333;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      color: var(--color-texto);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      display: flex;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--color-secundario);
+      border-radius: 4px;
+    }
+
+    /* Menú desplegable */
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #444;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      min-width: 160px;
+      z-index: 1001;
+    }
+
+    nav ul li:hover ul {
+      display: block;
+    }
+
+    nav ul li ul li a {
+      padding: 0.6rem;
+      white-space: nowrap;
+    }
+
+    nav ul li ul li a:hover {
+      background-color: var(--color-hover);
+      border-radius: 4px;
+    }
+
+    /* Estilos del formulario */
+    form {
+      background: var(--color-fondo);
+      padding: 2rem;
+      border: 3px solid var(--color-primario);
+      border-radius: 12px;
+      box-shadow: 0 0 8px var(--color-primario), 0 0 20px var(--color-primario);
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.3rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+      color: var(--color-primario);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      background-color: #222;
+      border: 2px solid var(--color-primario);
+      border-radius: 6px;
+      color: var(--color-texto);
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--color-secundario);
+      box-shadow: 0 0 12px var(--color-primario);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: var(--color-primario);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #111;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--color-hover);
+      box-shadow: 0 0 20px var(--color-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li>
+          <a href="#">Galería</a>
+          <ul>
+            <li><a href="#">Fotos</a></li>
+            <li><a href="#">Arte</a></li>
+            <li><a href="#">Eventos</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Videos</a></li>
+        <li><a href="#">Música</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+<br></br>
+  <!-- Formulario -->
+  <form action="https://formsubmit.co/tucorreo@ejemplo.com" method="POST" autocomplete="off" spellcheck="false">
+    <h1>Formulario de Solicitud</h1>
+
+    <div class="form-group">
+      <label for="fecha">Fecha del evento *</label>
+      <input type="date" id="fecha" name="fecha" required />
+    </div>
+
+    <div class="form-group">
+      <label for="hora">Hora del evento *</label>
+      <input type="time" id="hora" name="hora" required />
+    </div>
+
+    <div class="form-group">
+      <label for="otro-grupo">Si elegiste "Otro", indica cuál</label>
+      <input type="text" id="otro-grupo" name="otro_grupo" placeholder="Nombre del grupo" />
+    </div>
+
+    <div class="form-group">
+      <label for="duracion">Duración aproximada (minutos) *</label>
+      <input type="number" id="duracion" name="duracion" min="30" max="240" required placeholder="30 - 240" />
+    </div>
+
+    <div class="form-group">
+      <label for="lugar">Lugar del evento *</label>
+      <input type="text" id="lugar" name="lugar" required placeholder="Dirección o recinto" autocomplete="off" />
+    </div>
+
+    <div class="form-group">
+      <label for="capacidad">Capacidad estimada asistentes</label>
+      <input type="number" id="capacidad" name="capacidad" min="0" placeholder="Opcional" />
+    </div>
+
+    <div class="form-group">
+      <label for="contacto">Tu nombre *</label>
+      <input type="text" id="contacto" name="contacto" required placeholder="Tu nombre" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Tu correo electrónico *</label>
+      <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com" />
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Tu teléfono *</label>
+      <input type="tel" id="telefono" name="telefono" required placeholder="+34 123 456 789" />
+    </div>
+
+    <div class="form-group">
+      <p>¿Necesitas equipo de sonido o iluminación?</p>
+      <label><input type="radio" name="equipo" value="si" checked /> Sí</label>
+      <label><input type="radio" name="equipo" value="no" /> No</label>
+    </div>
+ <div class="form-group">
+      <p>Acepto el tratamiento de mis datos</p>
+      <label><input type="radio" name="equipo" value="si" checked /> Sí</label>
+ </div>
+    <div class="form-group">
+      <label for="comentarios">Comentarios adicionales</label>
+      <textarea id="comentarios" name="comentarios" rows="4" placeholder="Cuéntanos más detalles..."></textarea>
+    </div>
+
+    <button type="submit">Enviar solicitud</button>
+  </form>
+
+</body>
+</html>
